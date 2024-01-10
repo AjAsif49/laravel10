@@ -61,8 +61,8 @@ require __DIR__.'/auth.php';
         return redirect('/dashboard');
     });
 
-    Route::middleware('auth')->prefix('ticket')->group(function() {
+    Route::middleware('auth')->group(function() {
 
-        Route::resource('/', TicketController::class);
+        Route::resource('/ticket', TicketController::class);
     });
     
