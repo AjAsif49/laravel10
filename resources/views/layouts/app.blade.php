@@ -13,6 +13,21 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <style>
+            .button-red{
+                background-color: #f44336;
+                border-radius: 12px;
+            }
+            .button-green{
+                background-color: #04AA6D;
+                border-radius: 12px;
+            }
+            .button-yellow{
+                background-color: rgb(177, 174, 36);
+                border-radius: 12px;
+            }
+        </style>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
