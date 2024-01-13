@@ -53,9 +53,7 @@
     <p class="text-white">Status: {{ $ticket->status }}  </p>
      @endif
     
-
-
-        </div>
+    </div>
 
 </div>
 </div>

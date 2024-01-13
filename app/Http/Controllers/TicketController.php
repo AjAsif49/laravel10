@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
+use App\Models\User;
 use App\Models\Ticket;
+use Illuminate\Support\Str;
+use PhpParser\Node\Stmt\Return_;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
-use PhpParser\Node\Stmt\Return_;
+use App\Notifications\TicketUpdateNotification;
 
 class TicketController extends Controller
 {
@@ -16,7 +18,8 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::all();
+        $user = auth()->user();
+        $tickets = $user->isAdmin ? Ticket::latest()->get() : $user->tickets;
         return view('ticket.index', compact('tickets'));
     }
 
@@ -70,6 +73,11 @@ class TicketController extends Controller
     public function update(UpdateTicketRequest $request, Ticket $ticket)
     {
         $ticket->update($request->except('attachment'));
+
+        if($request->has('status')) {
+            // $user = User::find($ticket->user_id);
+            $ticket->user->notify(new TicketUpdateNotification($ticket));
+        }
 
         if($request->file('attachment')){
             Storage::disk('public')->delete($ticket->attachment); 
