@@ -23,8 +23,8 @@
                 background-color: #04AA6D;
                 border-radius: 12px;
             }
-            .button-yellow{
-                background-color: rgb(177, 174, 36);
+            .button-blue{
+                background-color: rgb(14, 156, 212);
                 border-radius: 12px;
             }
         </style>

@@ -67,4 +67,6 @@ require __DIR__.'/auth.php';
         Route::resource('/ticket', TicketController::class);
     });
     
+    Route::post('/comment', [CommentController::class, 'CommentCreate'])->name('comment.create');
+    Route::get('/comment', [CommentController::class, 'showComment']);
 
